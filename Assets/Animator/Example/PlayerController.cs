@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using KyoshiStudios.Animation;
 
 [RequireComponent(typeof(SpritePlayer), typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour {
