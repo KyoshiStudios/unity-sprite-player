@@ -351,11 +351,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc19598cb3d4016439ef98d0069aa75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOnStart: 1
   animations:
   - {fileID: 11400000, guid: 70882419cd840a44aa1bef6e622f5c60, type: 2}
   - {fileID: 11400000, guid: f2c89d6b58b4bda40950196ead80f593, type: 2}
   - {fileID: 11400000, guid: 3720b2d99de104a47bdf8821032d9e9a, type: 2}
-  playOnStart: 1
   OnComplete:
     m_PersistentCalls:
       m_Calls: []
@@ -462,7 +462,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &1797091642
 BoxCollider2D:
   m_ObjectHideFlags: 0

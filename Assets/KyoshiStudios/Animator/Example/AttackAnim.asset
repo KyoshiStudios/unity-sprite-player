@@ -19,3 +19,4 @@ MonoBehaviour:
   fps: 6
   id: Attack
   looping: 0
+  finishAnimation: 1

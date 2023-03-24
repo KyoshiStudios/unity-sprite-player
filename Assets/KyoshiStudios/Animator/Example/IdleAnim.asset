@@ -18,3 +18,4 @@ MonoBehaviour:
   fps: 2
   id: Idle
   looping: 1
+  finishAnimation: 0
