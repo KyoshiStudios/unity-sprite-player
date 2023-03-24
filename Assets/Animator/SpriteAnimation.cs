@@ -14,5 +14,22 @@ namespace KyoshiStudios.Animation {
         public string id = "New Animation";
         [Tooltip("If the animation should loop")]
         public bool looping = true;
+        [Tooltip("If the animation should finish before allowing a transition")]
+        public bool finishAnimation = true;
+
+        private List<Transition> transitions = new List<Transition>();
+
+        public void AddTransition(Transition transition) {
+            this.transitions.Add(transition);
+        }
+
+        public SpriteAnimation GetNextAnimation(List<string> conditions) {
+            foreach(Transition transition in transitions) {
+                if(transition.IsConditionMet(conditions)) {
+                    return transition.NextState;
+                }
+            }
+            return looping ? this : null;
+        }
     }
 }

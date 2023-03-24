@@ -14,18 +14,39 @@ public class PlayerController : MonoBehaviour {
         player = GetComponent<SpritePlayer>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        SpriteAnimation idle = player.GetAnimation("Idle");
+        SpriteAnimation walk = player.GetAnimation("Walk");
+        SpriteAnimation attack = player.GetAnimation("Attack");
+
+        Transition attackTransition = new Transition(attack, "attack");
+        Transition walkTransition = new Transition(walk, "isWalking");
+        Transition idleTransition = new Transition(idle, "isIdle");
+
+        //might add an option to automate this using all animations
+
+        //Add them in order of priority
+        idle.AddTransition(attackTransition);
+        idle.AddTransition(walkTransition);
+
+        walk.AddTransition(attackTransition);
+        walk.AddTransition(idleTransition);
+
+        attack.AddTransition(idleTransition);
+        attack.AddTransition(walkTransition);
     }
 
     // Update is called once per frame
     void Update() {
         //Control attacking
         if(Input.GetKeyDown(KeyCode.Space)) {
-            player.PlayAnimation("Attack");
-            player.OnCurrentLoopComplete.AddListener(() => {
-                player.PlayAnimation("Idle");
-            });
+            player.SetCondition("attack", true);
+        }
+        if(Input.GetKeyUp(KeyCode.Space)) {
+            player.SetCondition("attack", false);
         }
 
+        bool isWalking = true;
         //Control the player moving
         if(Input.GetKey(KeyCode.LeftArrow)) {
             sprite.flipX = true;
@@ -35,8 +56,13 @@ public class PlayerController : MonoBehaviour {
             rb.velocity = new Vector2(5, rb.velocity.y);
         } else {
             rb.velocity = new Vector2(0, rb.velocity.y);
+            isWalking = false;
         }
 
+        player.SetCondition("isWalking", isWalking);
+        player.SetCondition("isIdle", !isWalking);
+
+        /*
         //Change the animation depending on the speed of the player
         if(player.GetCurrentAnimation().id != "Attack") { //If the player is currently attacking, don't change the animation
             if(rb.velocity.magnitude > 0.2f) {
@@ -48,6 +74,6 @@ public class PlayerController : MonoBehaviour {
                     player.PlayAnimation("Idle");
                 }
             }
-        }
+        }*/
     }
 }
