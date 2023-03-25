@@ -16,26 +16,6 @@ namespace KyoshiStudios.Animation {
             player = GetComponent<SpritePlayer>();
             rb = GetComponent<Rigidbody2D>();
             sprite = GetComponent<SpriteRenderer>();
-
-            SpriteAnimation idle = player.GetAnimation("Idle");
-            SpriteAnimation walk = player.GetAnimation("Walk");
-            SpriteAnimation attack = player.GetAnimation("Attack");
-
-            Transition attackTransition = new Transition(attack, "attack");
-            Transition walkTransition = new Transition(walk, "isWalking");
-            Transition idleTransition = new Transition(idle, "isIdle");
-
-            //might add an option to automate this using all animations
-
-            //Add them in order of priority
-            idle.AddTransition(attackTransition);
-            idle.AddTransition(walkTransition);
-
-            walk.AddTransition(attackTransition);
-            walk.AddTransition(idleTransition);
-
-            attack.AddTransition(idleTransition);
-            attack.AddTransition(walkTransition);
         }
 
         // Update is called once per frame
@@ -63,20 +43,6 @@ namespace KyoshiStudios.Animation {
 
             player.SetCondition("isWalking", isWalking);
             player.SetCondition("isIdle", !isWalking);
-
-            /*
-            //Change the animation depending on the speed of the player
-            if(player.GetCurrentAnimation().id != "Attack") { //If the player is currently attacking, don't change the animation
-                if(rb.velocity.magnitude > 0.2f) {
-                    if(player.GetCurrentAnimation().id != "Walk") { //Check to make sure you aren't already walking
-                        player.PlayAnimation("Walk");
-                    }
-                } else {
-                    if(player.GetCurrentAnimation().id != "Idle") { //Check to make sure you aren't already idle
-                        player.PlayAnimation("Idle");
-                    }
-                }
-            }*/
         }
     }
 }
