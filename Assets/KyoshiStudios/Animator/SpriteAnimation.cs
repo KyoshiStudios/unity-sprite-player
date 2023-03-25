@@ -16,8 +16,8 @@ namespace KyoshiStudios.Animation {
         public bool looping = true;
         [Tooltip("If the animation should finish before allowing a transition")]
         public bool finishAnimation = true;
-
-        private List<Transition> transitions = new List<Transition>();
+        [Tooltip("All animations that can be transitioned to from this animation, in order of priority")]
+        [SerializeField] private List<Transition> transitions = new List<Transition>();
 
         public void AddTransition(Transition transition) {
             this.transitions.Add(transition);

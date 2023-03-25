@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace KyoshiStudios.Animation {
+    [System.Serializable]
     public class Transition {
-        private List<string> conditions = new List<string>();
+        [SerializeField] private List<string> conditions = new List<string>();
 
         public SpriteAnimation NextState { get { return nextState; } }
-        private SpriteAnimation nextState;
+        [SerializeField] private SpriteAnimation nextState;
 
         public Transition(SpriteAnimation nextState, string defaultCondition) {
             this.nextState = nextState;
