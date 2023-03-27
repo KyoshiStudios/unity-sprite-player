@@ -19,3 +19,11 @@ MonoBehaviour:
   fps: 6
   id: Walk
   looping: 1
+  finishAnimation: 0
+  transitions:
+  - conditions:
+    - attack
+    nextState: {fileID: 11400000, guid: 3720b2d99de104a47bdf8821032d9e9a, type: 2}
+  - conditions:
+    - isIdle
+    nextState: {fileID: 11400000, guid: 70882419cd840a44aa1bef6e622f5c60, type: 2}

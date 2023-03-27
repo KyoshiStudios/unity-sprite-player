@@ -20,3 +20,10 @@ MonoBehaviour:
   id: Attack
   looping: 0
   finishAnimation: 1
+  transitions:
+  - conditions:
+    - isIdle
+    nextState: {fileID: 11400000, guid: 70882419cd840a44aa1bef6e622f5c60, type: 2}
+  - conditions:
+    - isWalking
+    nextState: {fileID: 11400000, guid: f2c89d6b58b4bda40950196ead80f593, type: 2}
